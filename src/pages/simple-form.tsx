@@ -16,20 +16,20 @@ export default function AuthenticationTitle() {
       account: string().required('Required'),
       password: string().required('Required'),
     }),
-    controllers: [
-      {
+    controllers: {
+      account: {
         control: 'text-input',
         label: 'Account',
         name: 'account',
         withAsterisk: true,
       },
-      {
+      password: {
         control: 'password-input',
         label: 'Password',
         name: 'password',
         withAsterisk: true,
       },
-    ],
+    },
   });
 
   return (
