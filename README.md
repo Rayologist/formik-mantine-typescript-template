@@ -1,6 +1,8 @@
 # Mantine-styled Formik Components in Typescript
 
-This [mantine-next-template](https://github.com/mantinedev/mantine-next-template) integrates [Formik](https://github.com/jaredpalmer/formik) as a means of form contol. Input components developed by Mantine can be easily controlled through `<FormikController />`.
+**Notice: This repository is no longer maintained, beacuse the author has switched to using react-hook-from and zod. [Here](https://github.com/Rayologist/rhf-zod-mantine-typescript-template) is the repository that is being actively mantained**
+
+This [mantine-next-template](https://github.com/mantinedev/mantine-next-template) integrates [Formik](https://github.com/jaredpalmer/formik) as a means of form contol and [Yup](https://github.com/jquense/yup) as form validtion. Input components developed by Mantine can be easily controlled through `<FormikController />`.
 
 ## The `useSimpleForm` Hook
 
