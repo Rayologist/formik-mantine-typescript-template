@@ -1,18 +1,13 @@
-import { Form, Formik, FormikConfig, FormikContextType } from 'formik';
+import { Form, Formik, FormikConfig, FormikContextType, FormikValues } from 'formik';
 import { Button, Grid, ButtonProps, useMantineTheme } from '@mantine/core';
 import { FormikController } from '@components/Form';
 import { SimpleFormControllerProps } from 'types';
 import { useId } from '@mantine/hooks';
 import { ReactNode } from 'react';
 
-type Fields = {
-  [field: string]: any;
-};
+type SimpleFormProps<T extends FormikValues> = FormikConfig<T> & SimpleFormControllerProps<T>;
 
-type SimpleFormProps<T extends Fields> = FormikConfig<T> &
-  SimpleFormControllerProps<FormikContextType<T>>;
-
-const useSimpleForm = <T extends Fields>(props: SimpleFormProps<T>) => {
+const useSimpleForm = <T extends FormikValues>(props: SimpleFormProps<T>) => {
   const id = useId();
   const theme = useMantineTheme();
 
@@ -27,7 +22,7 @@ const useSimpleForm = <T extends Fields>(props: SimpleFormProps<T>) => {
       {(formik) => (
         <Form id={id}>
           <Grid justify="center" gutter="xl">
-            {controllers.map((field, index) => {
+            {Object.values(controllers).map((field, index) => {
               const { col, after, ...controllerProps } = field;
               return (
                 <Grid.Col key={`${field.name}-${index}`} {...col}>
