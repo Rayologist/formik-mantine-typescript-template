@@ -172,6 +172,7 @@ function FormDemo() {
       multiple: true,
       clearable: true,
       withAsterisk: true,
+      accept: 'application/pdf',
       col: {
         md: 12,
         lg: 12,
