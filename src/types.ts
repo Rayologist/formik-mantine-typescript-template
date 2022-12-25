@@ -12,6 +12,7 @@ import {
 } from '@mantine/core';
 import { DatePickerProps as MantineDatePickerProps } from '@mantine/dates';
 import { ReactNode } from 'react';
+import { FormikContextType, FormikValues } from 'formik';
 
 export type Option = {
   label: ReactNode;
@@ -22,7 +23,7 @@ export interface Options {
   options: Option[];
 }
 
-export type Controlled<T> = { label: string; name: string } & T;
+export type Controlled<T> = { label: ReactNode; name: string } & T;
 
 export type TextInputProps = Controlled<MantineTextInputProps>;
 export type PasswordInputProps = Controlled<MantinePasswordInputProps>;
@@ -55,9 +56,11 @@ export type ControllerProps =
   | ({ control: 'multi-select' } & MultiSelectProps)
   | ({ control: 'file-input' } & FileInputProps<boolean>);
 
-export type SimpleFormControllerProps<FormikContextType> = {
-  controllers: (ControllerProps & {
-    col?: ColProps;
-    after?: ReactNode | ((formikContext: FormikContextType) => ReactNode);
-  })[];
+export type SimpleFormControllerProps<T extends FormikValues> = {
+  controllers: {
+    [key in keyof T]: ControllerProps & { name: key } & {
+      col?: ColProps;
+      after?: ReactNode | ((formikContext: FormikContextType<T>) => ReactNode);
+    };
+  };
 };
